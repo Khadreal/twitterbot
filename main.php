@@ -71,16 +71,18 @@ use Google\Spreadsheet\ServiceRequestFactory;
 					<?php 
 						foreach ($data as $user)
 						{
+							$sn = 1;
 							$listFeed->insert([
 						        'name' => $user->name,
 						        'followers'	=> $user->followers_count
 						    ]);
 
 							echo "<tr>";
+							echo "<td>" .$sn ."</td>";
 							echo "<td>".$user->name . " </td>" ;
 							echo "<td>" .number_format($user->followers_count, 0) ."</td>" ;
 							echo "</tr>";
-
+							$sn++;
 						} 
 					?>
 				</tbody>
