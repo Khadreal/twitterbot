@@ -72,8 +72,8 @@ use Google\Spreadsheet\ServiceRequestFactory;
 						foreach ($data as $user)
 						{
 							$listFeed->insert([
-						        'Name' => $user->name,
-						        'Followers'	=> $user->followers_count
+						        'name' => $user->name,
+						        'followers'	=> $user->followers_count
 						    ]);
 
 							echo "<tr>";
