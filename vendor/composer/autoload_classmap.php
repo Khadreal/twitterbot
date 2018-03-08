@@ -7,4 +7,6 @@ $baseDir = dirname($vendorDir);
 
 return array(
     'Codebird\\Codebird' => $vendorDir . '/jublonet/codebird-php/src/codebird.php',
+    'Google_Service_Exception' => $vendorDir . '/google/apiclient/src/Google/Service/Exception.php',
+    'Google_Service_Resource' => $vendorDir . '/google/apiclient/src/Google/Service/Resource.php',
 );
