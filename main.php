@@ -1,12 +1,10 @@
 <?php
 
 require "vendor/autoload.php";
-//require "doc.php";
 
 use Abraham\TwitterOAuth\TwitterOAuth;
 use Google\Spreadsheet\DefaultServiceRequest;
 use Google\Spreadsheet\ServiceRequestFactory;
-
 
 
  	$aDiceValues = array();
@@ -46,26 +44,49 @@ use Google\Spreadsheet\ServiceRequestFactory;
 	$worksheet = $worksheets[1];
 	$listFeed = $worksheet->getListFeed();
 	$cellFeed = $worksheet->getCellFeed();
-	$cellFeed->editCell(1,1, "email");
-	$cellFeed->editCell(1,2, "age");
+	$cellFeed->editCell(1,1, "Name");
+	$cellFeed->editCell(1,2, "Followers");
 
 	// Search for users with tweet that contains a certain hashtag
-	$data = $connection->get("users/search", ["q" => "Twitter", "page" => 1, "count" => 20]);
+	$data = $connection->get("users/search", ["q" => "%23Arsenal", "page" => 1, "count" => 20]);
 
+?>
 
-	foreach ($data as $user)
-	{
+<html>
+	<head>
+		<title>Twitter Bot</title>
+		<link rel="stylesheet" href="style.css">
+	</head>
+	<body>
+		<div class="container">
+			<table>
+				<thead>
+					<tr>
+						<td>SN</td>
+						<td>Profile Name</td>
+						<td>Number of Followers</td>
+					</tr>
+				</thead>
+				<tbody>
+					<?php 
+						foreach ($data as $user)
+						{
+							$listFeed->insert([
+						        'Name' => $user->name,
+						        'Followers'	=> $user->followers_count
+						    ]);
 
-		echo $user->name ."  -   " ;
-		echo $user->followers_count ."<br>" ;
-		
+							echo "<tr>";
+							echo "<td>".$user->name . " </td>" ;
+							echo "<td>" .number_format($user->followers_count, 0) ."</td>" ;
+							echo "</tr>";
 
-		$listFeed->insert([
-	        'email' => $user->name,
-	        'age'	=> $user->followers_count
-	    ]);
-
-
-	}
+						} 
+					?>
+				</tbody>
+			</table>
+		</div>
+</body>
+</html>
 
 
