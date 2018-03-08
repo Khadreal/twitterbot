@@ -1,0 +1,10 @@
+{
+	"name": "Dev Center Twitter Bot",
+	"description": "Twitter bot",
+	"require": {
+		 "php": ">=7.0.0",
+		"abraham/twitteroauth": "^0.7.4",
+		"jublonet/codebird-php": "^3.1"
+	}
+
+}
